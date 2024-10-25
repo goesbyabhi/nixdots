@@ -14,7 +14,6 @@
 	glxinfo
 	nvitop
 	mangohud
-	protonup
 	gnome.gnome-tweaks
   ]) ++ (with pkgs-unstable; [
 	neovim

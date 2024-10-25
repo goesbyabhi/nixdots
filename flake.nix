@@ -9,9 +9,11 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -21,7 +23,14 @@
       nixosConfigurations = {
 	nixos = lib.nixosSystem {
 	  inherit system;
-	  modules = [ ./configuration.nix ];
+	  modules = [
+		  ./configuration.nix
+	  	  {
+			  imports = [ aagl.nixosModules.default ];
+			  nix.settings = aagl.nixConfig; # Set up Cachix
+			  programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+		  }
+	  ];
 	};
       };
 

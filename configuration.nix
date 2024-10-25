@@ -93,6 +93,9 @@
   programs.steam = {
 		enable = true;
 		gamescopeSession.enable = true;
+		extraCompatPackages = with pkgs;[
+			proton-ge-bin
+		];
   };
 
 	programs.gamemode.enable = true;
@@ -175,6 +178,18 @@
 	settings.experimental-features = [ "nix-command" "flakes" ];
 	settings.auto-optimise-store = true;
 	optimise.automatic = true;
+	settings.extra-substituters = [
+		"https://nix-community.cachix.org"
+		"https://nix-gaming.cachix.org"
+		"https://ezkea.cachix.org"
+		"https://hydra.nixos.org"
+	];
+	settings.trusted-public-keys = [
+		"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+		"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+		"hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+		"ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="	
+	];
 	gc = {
 		automatic = true;
 		dates = "weekly";
