@@ -15,8 +15,16 @@
 	nvitop
 	mangohud
 	protonup
+	gnome.gnome-tweaks
   ]) ++ (with pkgs-unstable; [
 	neovim
+  ]) ++ (with pkgs.gnomeExtensions; [
+	dash-to-dock
+	blur-my-shell
+	paperwm
+	appindicator
+	gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
+	compact-top-bar
   ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -37,6 +45,62 @@
   home.sessionVariables = {
      EDITOR = "nvim";
   };
+
+	dconf = {
+		enable = true;
+		settings = {
+			"org/gnome/shell" = {
+				disable-user-extensions = false;
+				enabled-extensions = with pkgs.gnomeExtensions; [
+					dash-to-dock.extensionUuid
+					gradient-top-bar.extensionUuid
+					blur-my-shell.extensionUuid
+					paperwm.extensionUuid
+					appindicator.extensionUuid
+					system-monitor.extensionUuid
+					gradient-top-bar.extensionUuid
+					compact-top-bar.extensionUuid
+				];
+			};
+			"org/gnome/desktop/interface" = {
+				clock-format = "12h";
+				clock-show-weekday = true;
+				color-scheme = "prefer-dark";
+			};
+			"org/gnome/shell/extensions/paperwm" = {
+					selection-border-size = 5;
+					show-focus-mode-icon = false;
+					show-window-position-bar = false;
+					show-workspace-indicator = false;
+					show-open-position-icon = false;
+					window-gap = 15;
+			};
+			"org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+					blur = false;
+			};
+			"org/gnome/shell/extensions/blur-my-shell/window-list" = {
+				blur = false;
+			};
+			"org/gnome/shell/extensions/blur-my-shell/panel" = {
+				blur = false;
+			};
+			"org/gnome/shell/extensions/blur-my-shell" = {
+				hacks-level = 0;
+			};
+			"org/gnome/shell/extensions/system-monitor" = {
+				show-upload = false;
+				show-download = false;
+			};
+			"org/gnome/shell/extensions/org/pshow/gradienttopbar" = {
+				opaque-on-maximized = true;
+			};
+			"org/gnome/desktop/wm/preferences" = {
+				button-layout = "appmenu:minimize,maximize,close";
+				focus-mode = "sloppy";
+				auto-raise = true;
+			};
+		};
+	};
 
   programs.bash = {
     enable = true;

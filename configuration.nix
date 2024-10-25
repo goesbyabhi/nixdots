@@ -97,6 +97,8 @@
 
 	programs.gamemode.enable = true;
 
+	services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
