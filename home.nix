@@ -15,7 +15,6 @@
 	nvitop
 	mangohud
 	protonup
-	gh
   ]) ++ (with pkgs-unstable; [
 	neovim
   ]);
@@ -61,6 +60,11 @@
 	pull.rebase = false;
     };
   };
+  
+	programs.gh = {
+		enable = true;
+		gitCredentialHelper.enable = true;
+	};
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
