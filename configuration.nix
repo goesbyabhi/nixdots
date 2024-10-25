@@ -69,6 +69,7 @@
 	hardware.nvidia.modesetting.enable = true;
 	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 	hardware.nvidia.nvidiaSettings = true;
+	hardware.nvidia.forceFullCompositionPipeline = true;
 	hardware.nvidia.prime = {
 		offload = {
 			enable = true;
