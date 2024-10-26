@@ -9,11 +9,17 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
-    aagl.inputs.nixpkgs.follows = "nixpkgs";
+    aagl = {
+    	url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
+    	inputs.nixpkgs.follows = "nixpkgs";
+    };
+    firefox-addons = {
+    	url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+	inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, firefox-addons, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -24,7 +30,7 @@
 	nixos = lib.nixosSystem {
 	  inherit system;
 	  modules = [
-		  ./configuration.nix
+		  ./nixos/configuration.nix
 	  	  {
 			  imports = [ aagl.nixosModules.default ];
 			  nix.settings = aagl.nixConfig; # Set up Cachix
@@ -36,9 +42,10 @@
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ ./abhi/home.nix ];
 	extraSpecialArgs = {
 	  inherit pkgs-unstable;
+	  inherit firefox-addons;
 	};
       };
     };
