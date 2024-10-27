@@ -9,7 +9,8 @@
 
 /*  #tabs-newtab-button, #new-tab-button{opacity: 0 !important}  /*  Hide newtab button  */
 
-#navigator-toolbox{background-image: url("./Background.png"), url("./NavbarBackground.png")}  /*  Custom background -- Also check userContent.css  */
+/* #navigator-toolbox{background-image: url("./Background.png"), url("./Background.png")} */ /*  Custom background -- Also check userContent.css  */
+#navigator-toolbox { background-color: #1e1e1e !important; }
 
 :root{
 --tab-border-radius: 3px !important; /*  Tab border radius -- Changes the tabs rounding  *//*  Default: 3px  */

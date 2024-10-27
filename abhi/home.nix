@@ -15,8 +15,14 @@
 	nvitop
 	mangohud
 	gnome.gnome-tweaks
+	inotify-tools
+	libnotify
   ]) ++ (with pkgs-unstable; [
 	neovim
+	bun
+	nodejs_22
+	gcc
+	go
   ]) ++ (with pkgs.gnomeExtensions; [
 	dash-to-dock
 	blur-my-shell
