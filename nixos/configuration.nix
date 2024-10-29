@@ -166,6 +166,9 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+	networking.firewall.allowedTCPPorts = lib.range 1714 1764;
+	networking.firewall.allowedUDPPorts = lib.range 1714 1764;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -182,13 +185,11 @@
 		"https://nix-community.cachix.org"
 		"https://nix-gaming.cachix.org"
 		"https://ezkea.cachix.org"
-		"https://hydra.nixos.org"
 	];
 	settings.trusted-public-keys = [
 		"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 		"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-		"hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
-		"ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="	
+		"ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
 	];
 	gc = {
 		automatic = true;

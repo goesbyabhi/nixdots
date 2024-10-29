@@ -17,12 +17,21 @@
 	gnome.gnome-tweaks
 	inotify-tools
 	libnotify
+	jq
+	unzip
+	ripgrep
+	fzf
+	zathura
+	bat
+	obsidian
   ]) ++ (with pkgs-unstable; [
 	neovim
 	bun
 	nodejs_22
 	gcc
 	go
+	zig
+	python3
   ]) ++ (with pkgs.gnomeExtensions; [
 	dash-to-dock
 	blur-my-shell
@@ -30,6 +39,7 @@
 	appindicator
 	gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
 	compact-top-bar
+	gsconnect
   ]);
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -39,6 +49,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    ".config/nvim".source = ./nvim;
+		".wezterm.lua".source = ./wezterm/wezterm.lua;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -65,6 +77,7 @@
 					system-monitor.extensionUuid
 					gradient-top-bar.extensionUuid
 					compact-top-bar.extensionUuid
+					gsconnect.extensionUuid
 				];
 			};
 			"org/gnome/desktop/interface" = {
@@ -79,9 +92,13 @@
 					show-workspace-indicator = false;
 					show-open-position-icon = false;
 					window-gap = 15;
+					vertical-margin = 5;
+					vertical-margin-bottom = 8;
 			};
 			"org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
-					blur = false;
+					blur = true;
+					static-blur = true;
+					unblur-in-overview = true;
 			};
 			"org/gnome/shell/extensions/blur-my-shell/window-list" = {
 				blur = false;
@@ -104,6 +121,10 @@
 				focus-mode = "sloppy";
 				auto-raise = true;
 			};
+			"org/gnome/shell/extensions/dash-to-dock" = {
+				dash-max-icon-size = 38;
+				custom-theme-shrink = true;
+			};
 		};
 	};
 
@@ -113,6 +134,7 @@
       ll = "ls -l";
       ".." = "cd ..";
       cls = "clear";
+			cat = "bat";
     };
     initExtra = ''
       . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
@@ -130,7 +152,7 @@
 			darkreader
 			ublock-origin
 			vimium
-		]; 
+		];
 	};
   };
 
@@ -144,11 +166,20 @@
 	pull.rebase = false;
     };
   };
-  
+
 	programs.gh = {
 		enable = true;
 		gitCredentialHelper.enable = true;
 	};
+
+	programs.zoxide = {
+		enable = true;
+		enableBashIntegration = true;
+		options = [
+			"--cmd cd"
+		];
+	};
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
