@@ -24,6 +24,8 @@
 	zathura
 	bat
 	obsidian
+	zellij
+	gdb
   ]) ++ (with pkgs-unstable; [
 	neovim
 	bun
@@ -32,6 +34,7 @@
 	go
 	zig
 	python3
+	rustup
   ]) ++ (with pkgs.gnomeExtensions; [
 	dash-to-dock
 	blur-my-shell
@@ -39,24 +42,12 @@
 	appindicator
 	gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
 	compact-top-bar
-	gsconnect
   ]);
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
     ".config/nvim".source = ./nvim;
 		".wezterm.lua".source = ./wezterm/wezterm.lua;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+		".config/zellij".source = ./zellij;
   };
 
   home.sessionVariables = {
@@ -77,7 +68,6 @@
 					system-monitor.extensionUuid
 					gradient-top-bar.extensionUuid
 					compact-top-bar.extensionUuid
-					gsconnect.extensionUuid
 				];
 			};
 			"org/gnome/desktop/interface" = {
@@ -144,9 +134,6 @@
   programs.firefox = {
   	enable = true;
 	profiles.abhi = {
-		userChrome = builtins.readFile firefox/userChrome.css;
-		userContent = builtins.readFile firefox/userContent.css;
-		extraConfig = builtins.readFile firefox/user.js;
 		extensions = with firefox-addons.packages."x86_64-linux"; [
 			bitwarden
 			darkreader
