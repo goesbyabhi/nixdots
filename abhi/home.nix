@@ -54,6 +54,10 @@
      EDITOR = "nvim";
   };
 
+	home.sessionPath = [
+		"$HOME/.cargo/bin"
+	];
+
 	dconf = {
 		enable = true;
 		settings = {
