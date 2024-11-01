@@ -26,6 +26,7 @@
 	obsidian
 	zellij
 	gdb
+	wl-clipboard
   ]) ++ (with pkgs-unstable; [
 	neovim
 	bun
@@ -50,6 +51,8 @@
 		".config/zellij".source = ./zellij;
   };
 
+	# Run unset __HM_SESS_VARS_SOURCED ; . .profile
+	# after you've built the stuff. This will do some weird refresher as the sessionas are not set properly
   home.sessionVariables = {
      EDITOR = "nvim";
   };

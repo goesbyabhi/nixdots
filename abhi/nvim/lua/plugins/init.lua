@@ -61,7 +61,13 @@ local plugins = {
 		end,
 		dependencies =
 		{
-			{ 'neovim/nvim-lspconfig' },
+			{ 'neovim/nvim-lspconfig',
+				config = function()
+					require'lspconfig'.rust_analyzer.setup {
+						cmd = { "rust-analyzer" },
+					}
+				end,
+			},
 			{ 'williamboman/mason.nvim' },
 			{ 'williamboman/mason-lspconfig.nvim' },
 
