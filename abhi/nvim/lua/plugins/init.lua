@@ -66,6 +66,9 @@ local plugins = {
 					require'lspconfig'.rust_analyzer.setup {
 						cmd = { "rust-analyzer" },
 					}
+					require'lspconfig'.clangd.setup {
+						cmd = { "clangd" },
+					}
 				end,
 			},
 			{ 'williamboman/mason.nvim' },

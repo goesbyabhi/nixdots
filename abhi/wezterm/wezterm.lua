@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("Berkeley Mono")
 config.font_size = 13.0
 
-config.enable_tab_bar = false
+config.enable_tab_bar = true
 config.window_decorations = "NONE"
 
 config.audible_bell = "Disabled"
