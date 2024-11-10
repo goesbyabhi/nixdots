@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -60,47 +61,47 @@
   services.printing.enable = true;
 
   hardware.opengl = {
-		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
-	services.xserver.videoDrivers = ["nvidia" "amdgpu"];
-	hardware.nvidia.modesetting.enable = true;
-	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
-	hardware.nvidia.nvidiaSettings = true;
-	hardware.nvidia.forceFullCompositionPipeline = true;
-	hardware.nvidia.prime = {
-		offload = {
-			enable = true;
-			enableOffloadCmd = true;
-		};
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
+  hardware.nvidia.nvidiaSettings = true;
+  hardware.nvidia.forceFullCompositionPipeline = true;
+  hardware.nvidia.prime = {
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
 
-		amdgpuBusId = "PCI:5:0:0";
-		nvidiaBusId = "PCI:1:0:0";
-	};
+    amdgpuBusId = "PCI:5:0:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
-	specialisation = {
-		gaming.configuration = {
-			hardware.nvidia.prime.sync.enable = lib.mkForce true;
-			hardware.nvidia.prime.offload = {
-				enable = lib.mkForce false;
-				enableOffloadCmd = lib.mkForce false;
-			};
-		};
-	};
+  specialisation = {
+    gaming.configuration = {
+      hardware.nvidia.prime.sync.enable = lib.mkForce true;
+      hardware.nvidia.prime.offload = {
+        enable = lib.mkForce false;
+        enableOffloadCmd = lib.mkForce false;
+      };
+    };
+  };
 
   programs.steam = {
-		enable = true;
-		gamescopeSession.enable = true;
-		extraCompatPackages = with pkgs;[
-			proton-ge-bin
-		];
+    enable = true;
+    gamescopeSession.enable = true;
+    extraCompatPackages = with pkgs;[
+      proton-ge-bin
+    ];
   };
 
-	programs.gamemode.enable = true;
+  programs.gamemode.enable = true;
 
-	services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -127,7 +128,7 @@
     description = "Abhishek Panda";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -144,6 +145,8 @@
     # wget
     # git
     auto-cpufreq
+    # xdg-utils
+    # xdg-desktop-portal-gtk
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -156,7 +159,7 @@
 
   # List services that you want to enable:
 
-    services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.enable = true;
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
@@ -166,8 +169,8 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-	networking.firewall.allowedTCPPorts = lib.range 1714 1764;
-	networking.firewall.allowedUDPPorts = lib.range 1714 1764;
+  networking.firewall.allowedTCPPorts = lib.range 1714 1764;
+  networking.firewall.allowedUDPPorts = lib.range 1714 1764;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -178,23 +181,23 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   nix = {
-	settings.experimental-features = [ "nix-command" "flakes" ];
-	settings.auto-optimise-store = true;
-	optimise.automatic = true;
-	settings.extra-substituters = [
-		"https://nix-community.cachix.org"
-		"https://nix-gaming.cachix.org"
-		"https://ezkea.cachix.org"
-	];
-	settings.trusted-public-keys = [
-		"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-		"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-		"ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-	];
-	gc = {
-		automatic = true;
-		dates = "weekly";
-		options = "--delete-older-than 7d";
-	};
+    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.auto-optimise-store = true;
+    optimise.automatic = true;
+    settings.extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://nix-gaming.cachix.org"
+      "https://ezkea.cachix.org"
+    ];
+    settings.trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+    ];
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
 }

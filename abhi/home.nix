@@ -29,7 +29,7 @@
     qbittorrent
     ranger
     w3m
-    rxvt-unicode-unwrapped-emoji
+    rxvt-unicode-emoji
     xorg.xev
   ]) ++ (with pkgs-unstable; [
     neovim
