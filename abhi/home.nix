@@ -191,6 +191,10 @@
     in
     {
       enable = true;
+      theme = spicePkgs.themes.sleek;
+      enabledCustomApps = with spicePkgs.apps; [
+        lyricsPlus
+      ];
       enabledExtensions = with spicePkgs.extensions; [
         adblock
         hidePodcasts
@@ -198,8 +202,6 @@
         beautifulLyrics
         seekSong
       ];
-      theme = spicePkgs.themes.defaultDynamic;
-      # colorScheme = "mocha";
     };
 
   # Let Home Manager install and manage itself.
