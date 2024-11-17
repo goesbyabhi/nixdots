@@ -197,15 +197,8 @@
         shuffle # shuffle+ (special characters are sanitized out of extension names)
         beautifulLyrics
         seekSong
-        {
-          src = pkgs.fetchFromGitHub {
-            owner = "rxri"; # The owner of the repository
-            repo = "spicetify-extensions"; # The name of the repository
-            rev = "main"; # You can specify a branch or commit hash
-            hash = "sha256-gra4N7JA6vuqCQg1zrulwxiM4nCSZ9m+fFouHdqI7Yk="; # Replace with actual SHA256 hash
-          };
-          name = "adblock/adblock.js";
-        }
+        adblockify
+        oneko
       ];
       theme = spicePkgs.themes.defaultDynamic;
       # colorScheme = "mocha";
