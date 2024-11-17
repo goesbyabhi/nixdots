@@ -10,12 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     aagl = {
-    	url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
-    	inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-addons = {
-    	url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-	inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -23,30 +23,33 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       lib = nixpkgs.lib;
-    in {
+    in
+    {
       nixosConfigurations = {
-	nixos = lib.nixosSystem {
-	  inherit system;
-	  modules = [
-		  ./nixos/configuration.nix
-	  	  {
-			  imports = [ aagl.nixosModules.default ];
-			  nix.settings = aagl.nixConfig; # Set up Cachix
-			  programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
-		  }
-	  ];
-	};
+        nixos = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./nixos/configuration.nix
+            {
+              imports = [ aagl.nixosModules.default ];
+              nix.settings = aagl.nixConfig; # Set up Cachix
+              programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+            }
+          ];
+        };
       };
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
-	inherit pkgs;
-        modules = [ ./abhi/home.nix ];
-	extraSpecialArgs = {
-	  inherit pkgs-unstable;
-	  inherit firefox-addons;
-	};
+        inherit pkgs;
+        modules = [
+          ./abhi/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit pkgs-unstable;
+          inherit firefox-addons;
+        };
       };
     };
 }

@@ -37,9 +37,9 @@
 *.color15:      #ffffff
 
 ! General config
-URxvt.depth: 32
+URxvt.depth: 24
 URxvt*termName: rxvt-unicode-256color
-URxvt.cursorBlink: true
+URxvt.cursorBlink: false
 URxvt.internalBorder: 8
 URxvt.cursorUnderline: false
 URxvt.font: xft:IosevkaCustom Nerd Font:style=Regular:size=14
@@ -55,6 +55,8 @@ URxvt.scrollBar_right: false
 URxvt.scrollBar_floating: false
 URxvt.scrollstyle: rxvt
 URxvt.iso14755: false
+URxvt*inheritPixmap: false
+URxvt*transparent: false
 
 ! Tabbed extension & perl extension config
 URxvt.perl-lib: ~/.urxvt/perls/

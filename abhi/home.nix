@@ -5,7 +5,12 @@
   home.homeDirectory = "/home/abhi";
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
-  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = (_: true);
+  };
+
   home.packages = (with pkgs; [
     hello
     discord
@@ -31,11 +36,10 @@
     w3m
     rxvt-unicode-emoji
     xorg.xev
+    spotify
   ]) ++ (with pkgs-unstable; [
     neovim
-    go
-    zig
-    rustup
+    vscode
   ]) ++ (with pkgs.gnomeExtensions; [
     dash-to-dock
     blur-my-shell
@@ -58,10 +62,11 @@
     EDITOR = "nvim";
     # LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     BAT_THEME = "OneHalfDark";
+    XCURSOR_THEME = "McMojave-cursors";
   };
 
   home.sessionPath = [
-    "$HOME/.cargo/bin"
+    # "$HOME/.cargo/bin"
   ];
 
   dconf = {
