@@ -1,5 +1,14 @@
 { config, pkgs, pkgs-unstable, firefox-addons, inputs, ... }:
-
+let
+  nurPkgs = import inputs.nixpkgs {
+    config =
+      {
+        allowUnfree = true;
+      };
+    system = pkgs.system;
+    overlays = [ inputs.nur.overlay ];
+  };
+in
 {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
@@ -14,6 +23,7 @@
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
   };
+
 
   home.packages = (with pkgs; [
     hello
@@ -50,6 +60,8 @@
     appindicator
     gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
     compact-top-bar
+  ]) ++ (with nurPkgs; [
+    nur.repos.nltch.spotify-adblock
   ]);
 
   home.file = {
@@ -190,7 +202,7 @@
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
     in
     {
-      enable = true;
+      enable = false;
       theme = spicePkgs.themes.sleek;
       enabledCustomApps = with spicePkgs.apps; [
         lyricsPlus

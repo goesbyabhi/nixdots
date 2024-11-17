@@ -21,6 +21,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, aagl, firefox-addons, ... }@inputs:
