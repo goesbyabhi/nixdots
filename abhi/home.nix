@@ -197,8 +197,6 @@
         shuffle # shuffle+ (special characters are sanitized out of extension names)
         beautifulLyrics
         seekSong
-        adblockify
-        oneko
       ];
       theme = spicePkgs.themes.defaultDynamic;
       # colorScheme = "mocha";
