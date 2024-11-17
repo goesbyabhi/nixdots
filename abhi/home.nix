@@ -1,6 +1,10 @@
-{ config, pkgs, pkgs-unstable, firefox-addons, ... }:
+{ config, pkgs, pkgs-unstable, firefox-addons, inputs, ... }:
 
 {
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.default
+  ];
+
   home.username = "abhi";
   home.homeDirectory = "/home/abhi";
 
@@ -36,7 +40,6 @@
     w3m
     rxvt-unicode-emoji
     xorg.xev
-    spotify
   ]) ++ (with pkgs-unstable; [
     neovim
     vscode
@@ -181,6 +184,32 @@
       "--cmd cd"
     ];
   };
+
+  programs.spicetify =
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        adblock
+        hidePodcasts
+        shuffle # shuffle+ (special characters are sanitized out of extension names)
+        beautifulLyrics
+        seekSong
+        {
+          src = pkgs.fetchFromGitHub {
+            owner = "rxri"; # The owner of the repository
+            repo = "spicetify-extensions"; # The name of the repository
+            rev = "main"; # You can specify a branch or commit hash
+            hash = "sha256-15f529jdgs2d2i2gliibi3fb8w94f8l6cy2pwwyf9m8nv10lspi5"; # Replace with actual SHA256 hash
+          };
+          name = "adblock/adblock.js";
+        }
+      ];
+      theme = spicePkgs.themes.defaultDynamic;
+      # colorScheme = "mocha";
+    };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

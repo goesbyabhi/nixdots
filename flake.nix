@@ -17,9 +17,13 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, firefox-addons, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, aagl, firefox-addons, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -49,6 +53,7 @@
         extraSpecialArgs = {
           inherit pkgs-unstable;
           inherit firefox-addons;
+          inherit inputs;
         };
       };
     };
