@@ -202,7 +202,7 @@
             owner = "rxri"; # The owner of the repository
             repo = "spicetify-extensions"; # The name of the repository
             rev = "main"; # You can specify a branch or commit hash
-            hash = "sha256-15f529jdgs2d2i2gliibi3fb8w94f8l6cy2pwwyf9m8nv10lspi5"; # Replace with actual SHA256 hash
+            hash = "sha256-gra4N7JA6vuqCQg1zrulwxiM4nCSZ9m+fFouHdqI7Yk="; # Replace with actual SHA256 hash
           };
           name = "adblock/adblock.js";
         }
