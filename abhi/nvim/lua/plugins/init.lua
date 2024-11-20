@@ -30,13 +30,6 @@ local plugins = {
 		end,
 	},
 	{
-		"theprimeagen/harpoon",
-		event = "BufReadPre",
-		config = function()
-			require "plugins.configs.harpoon"
-		end,
-	},
-	{
 		"theprimeagen/refactoring.nvim",
 		lazy = true,
 		config = function()
@@ -227,22 +220,6 @@ local plugins = {
 			vim.cmd.colorscheme("carbonfox")
 		end
 	},
-	-- {
-	-- 	"kdheepak/monochrome.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	init = function()
-	-- 		-- vim.cmd.colorscheme("monochrome")
-	-- 	end
-	-- },
-	-- {
-	-- 	"slugbyte/lackluster.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	init = function()
-	-- 		-- vim.cmd.colorscheme("lackluster-mint")
-	-- 	end
-	-- },
 	{
 		'mfussenegger/nvim-dap',
 		dependencies = {
@@ -297,24 +274,16 @@ local plugins = {
 	-- 	end
 	-- },
 	-- { 'wakatime/vim-wakatime', lazy = false },
-	-- {
-	-- 	'https://github.com/fresh2dev/zellij.vim.git',
-	-- 	lazy = false,
-	-- 	keys = {
-	-- 		{ '<leader>tt', ':ZellijNewPane<CR>',       mode = { 'n' },      { noremap = true } },
-	-- 		{ '<M-f>',      ':ZellijNewPane<CR>',       mode = { 'n', 'i' }, { noremap = true } },
-	-- 		{ '<M-t>',      ':ZellijNewPaneSplit<CR>',  mode = { 'n', 'i' }, { noremap = true } },
-	-- 		{ '<M-v>',      ':ZellijNewPaneVSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
-	-- 	},
-	-- }
 	{
-		"christoomey/vim-tmux-navigator",
+		'https://github.com/fresh2dev/zellij.vim.git',
 		lazy = false,
+		keys = {
+			{ '<leader>tt', ':ZellijNewPane<CR>',       mode = { 'n' },      { noremap = true } },
+			{ '<M-f>',      ':ZellijNewPane<CR>',       mode = { 'n', 'i' }, { noremap = true } },
+			{ '<M-t>',      ':ZellijNewPaneSplit<CR>',  mode = { 'n', 'i' }, { noremap = true } },
+			{ '<M-v>',      ':ZellijNewPaneVSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
+		},
 	},
-	{
-		"tpope/vim-obsession",
-		lazy = false,
-	}
 }
 
 local opts = {}
