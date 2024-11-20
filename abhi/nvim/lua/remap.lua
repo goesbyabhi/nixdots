@@ -22,10 +22,10 @@ map("n", "<leader>v", ":vsplit<CR>") -- space+v creates a veritcal split
 map("n", "<leader>h", ":split<CR>")  -- space+h creates a horizontal split:w
 
 -- easy split navigation
-map("n", "<C-h>", "<C-w>h") -- control+h switches to left split
-map("n", "<C-l>", "<C-w>l") -- control+l switches to right split
-map("n", "<C-j>", "<C-w>j") -- control+j switches to bottom split
-map("n", "<C-k>", "<C-w>k") -- control+k switches to top split
+-- map("n", "<C-h>", "<C-w>h") -- control+h switches to left split
+-- map("n", "<C-l>", "<C-w>l") -- control+l switches to right split
+-- map("n", "<C-j>", "<C-w>j") -- control+j switches to bottom split
+-- map("n", "<C-k>", "<C-w>k") -- control+k switches to top split
 
 -- buffer navigation
 map("n", "<Tab>", ":bnext <CR>")       -- Tab goes to next buffer
@@ -72,3 +72,9 @@ map("v", "d", '"_d') -- this deletes the text without yanking into the Clipboard
 
 -- New movement fixes
 map("n", "G", "Gzz") -- this centers the screen when moving to the bottom of the file
+
+-- TmuxNaviagate
+map("n", "<C-h>", "<cmd> TmuxNaviagateLeft<CR>")
+map("n", "<C-l>", "<cmd> TmuxNaviagateRight<CR>")
+map("n", "<C-j>", "<cmd> TmuxNaviagateDown<CR>")
+map("n", "<C-k>", "<cmd> TmuxNaviagateUp<CR>")

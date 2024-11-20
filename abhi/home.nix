@@ -42,7 +42,7 @@ in
     fzf
     bat
     obsidian
-    zellij
+    # zellij
     gdb
     wl-clipboard
     qbittorrent
@@ -50,6 +50,7 @@ in
     w3m
     rxvt-unicode-emoji
     xorg.xev
+    tmux
   ]) ++ (with pkgs-unstable; [
     neovim
     vscode
@@ -67,7 +68,7 @@ in
   home.file = {
     ".config/nvim".source = ./nvim;
     ".wezterm.lua".source = ./wezterm/wezterm.lua;
-    ".config/zellij".source = ./zellij;
+    # ".config/zellij".source = ./zellij;
     ".Xdefaults".source = ./urxvt/xdefaults;
   };
 
@@ -216,6 +217,48 @@ in
       ];
     };
 
+  programs.tmux = {
+    enable = true;
+    baseIndex = 1;
+    keyMode = "vi";
+    mouse = true;
+    prefix = "M-z";
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+      cpu
+      yank
+      {
+        plugin = mode-indicator;
+        extraConfig = "set -g status-right '%Y-%m-%d %H:%M #{tmux_mode_indicator}";
+      }
+      {
+        plugin = resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = continuum;
+        extraConfig = ''
+          					set -g @continuum-restore 'on'
+          					set -g @continuum-save-interval '60'
+          				'';
+      }
+    ];
+    extraConfig = ''
+            					set-option -sa terminal-overrides ",xterm*:Tc"
+                  		source ./tmux/carbonfox.tmux
+                  		bind - split-window -v -c "#{pane_current_path}"
+                  		bind _ split-window -h -c "#{pane_current_path}"
+
+                  		bind -r k select-pane -U
+                  		bind -r j select-pane -D
+                  		bind -r h select-pane -L
+                  		bind -r l select-pane -R
+
+      								bind-key -T copy-mode-vi v send-keys -X begin-selection
+      								bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      								bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+                  		'';
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

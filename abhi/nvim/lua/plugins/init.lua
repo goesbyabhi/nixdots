@@ -184,12 +184,12 @@ local plugins = {
 			disable = { filetypes = { '^alpha$' } },
 		},
 	},
-	-- {
-	-- 	'andweeb/presence.nvim',
-	-- 	config = function()
-	-- 		require("plugins.configs.presence")
-	-- 	end
-	-- },
+	{
+		'andweeb/presence.nvim',
+		config = function()
+			require("plugins.configs.presence")
+		end
+	},
 	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
@@ -227,22 +227,22 @@ local plugins = {
 			vim.cmd.colorscheme("carbonfox")
 		end
 	},
-	{
-		"kdheepak/monochrome.nvim",
-		lazy = false,
-		priority = 1000,
-		init = function()
-			-- vim.cmd.colorscheme("monochrome")
-		end
-	},
-	{
-		"slugbyte/lackluster.nvim",
-		lazy = false,
-		priority = 1000,
-		init = function()
-			-- vim.cmd.colorscheme("lackluster-mint")
-		end
-	},
+	-- {
+	-- 	"kdheepak/monochrome.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	init = function()
+	-- 		-- vim.cmd.colorscheme("monochrome")
+	-- 	end
+	-- },
+	-- {
+	-- 	"slugbyte/lackluster.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	init = function()
+	-- 		-- vim.cmd.colorscheme("lackluster-mint")
+	-- 	end
+	-- },
 	{
 		'mfussenegger/nvim-dap',
 		dependencies = {
@@ -290,22 +290,30 @@ local plugins = {
 			whitespace = { highlight = { "Whitespace", "NonText" } },
 		},
 	},
-	{
-		"SunnyTamang/pendulum.nvim",
-		config = function()
-			require "pendulum".setup()
-		end
-	},
+	-- {
+	-- 	"SunnyTamang/pendulum.nvim",
+	-- 	config = function()
+	-- 		require "pendulum".setup()
+	-- 	end
+	-- },
 	-- { 'wakatime/vim-wakatime', lazy = false },
+	-- {
+	-- 	'https://github.com/fresh2dev/zellij.vim.git',
+	-- 	lazy = false,
+	-- 	keys = {
+	-- 		{ '<leader>tt', ':ZellijNewPane<CR>',       mode = { 'n' },      { noremap = true } },
+	-- 		{ '<M-f>',      ':ZellijNewPane<CR>',       mode = { 'n', 'i' }, { noremap = true } },
+	-- 		{ '<M-t>',      ':ZellijNewPaneSplit<CR>',  mode = { 'n', 'i' }, { noremap = true } },
+	-- 		{ '<M-v>',      ':ZellijNewPaneVSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
+	-- 	},
+	-- }
 	{
-		'https://github.com/fresh2dev/zellij.vim.git',
+		"christoomey/vim-tmux-navigator",
 		lazy = false,
-		keys = {
-			{ '<leader>tt', ':ZellijNewPane<CR>',       mode = { 'n' },      { noremap = true } },
-			{ '<M-f>',      ':ZellijNewPane<CR>',       mode = { 'n', 'i' }, { noremap = true } },
-			{ '<M-t>',      ':ZellijNewPaneSplit<CR>',  mode = { 'n', 'i' }, { noremap = true } },
-			{ '<M-v>',      ':ZellijNewPaneVSplit<CR>', mode = { 'n', 'i' }, { noremap = true } },
-		},
+	},
+	{
+		"tpope/vim-obsession",
+		lazy = false,
 	}
 }
 
