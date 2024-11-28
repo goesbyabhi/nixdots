@@ -1,17 +1,16 @@
 { config, pkgs, pkgs-unstable, inputs, ... }:
-let
-  nurPkgs = import inputs.nixpkgs {
-    config =
-      {
-        allowUnfree = true;
-      };
-    system = pkgs.system;
-    overlays = [ inputs.nur.overlay ];
-  };
-in
+# let
+#   nurPkgs = import inputs.nixpkgs {
+#     config =
+#       {
+#         allowUnfree = true;
+#       };
+#     system = pkgs.system;
+#     overlays = [ inputs.nur.overlay ];
+#   };
+# in
 {
   imports = [
-    inputs.spicetify-nix.homeManagerModules.default
     ./desktop/gnome.nix
     ./app
     ./shell/cli.nix
@@ -83,8 +82,8 @@ in
     appindicator
     gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
     compact-top-bar
-  ]) ++ (with nurPkgs; [
-    nur.repos.nltch.spotify-adblock
+    # ]) ++ (with nurPkgs; [
+    #   nur.repos.nltch.spotify-adblock
   ]);
 
   home.file = {

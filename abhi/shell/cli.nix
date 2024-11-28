@@ -85,7 +85,7 @@ _: {
 
     zellij = {
       enable = true;
-      enableBashIntegration = true;
+      # enableBashIntegration = true;
     };
   };
 

@@ -1,10 +1,13 @@
-{ pkg, inputs, ... }: {
+{ pkgs, inputs, ... }: {
+  imports = [
+    inputs.spicetify-nix.homeManagerModules.default
+  ];
   programs.spicetify =
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
     in
     {
-      enable = false;
+      enable = true;
       theme = spicePkgs.themes.sleek;
       enabledCustomApps = with spicePkgs.apps; [
         lyricsPlus
