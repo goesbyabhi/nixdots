@@ -33,6 +33,7 @@
   i18n.defaultLocale = "en_IN";
 
   i18n.extraLocaleSettings = {
+    LC_CTYPE = "en_IN";
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
     LC_MEASUREMENT = "en_IN";
@@ -50,6 +51,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.windowManager.openbox.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -126,7 +128,7 @@
   users.users.abhi = {
     isNormalUser = true;
     description = "Abhishek Panda";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -134,6 +136,24 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  programs.droidcam.enable = true;
+
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    daemon.settings = {
+      data-root = "~/.docker-data";
+      userland-proxy = false;
+      experimental = true;
+      metrics-addr = "0.0.0.0:9323";
+      ipv6 = true;
+      fixed-cidr-v6 = "fd00::/80";
+    };
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -145,8 +165,27 @@
     # wget
     # git
     auto-cpufreq
-    # xdg-utils
-    # xdg-desktop-portal-gtk
+    (
+      let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+      pkgs.buildFHSUserEnv (base // {
+        name = "fhs";
+        targetPkgs = pkgs:
+          # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
+          # lacking many basic packages needed by most software.
+          # Therefore, we need to add them manually.
+          #
+          # pkgs.appimageTools provides basic packages required by most software.
+          (base.targetPkgs pkgs) ++ (with pkgs; [
+            pkg-config
+            ncurses
+            # Feel free to add more packages here if needed.
+          ]
+          );
+        profile = "export FHS=1";
+        runScript = "bash";
+        extraOutputsToInstall = [ "dev" ];
+      })
+    )
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -160,6 +199,8 @@
   # List services that you want to enable:
 
   services.auto-cpufreq.enable = true;
+  services.flatpak.enable = true;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 

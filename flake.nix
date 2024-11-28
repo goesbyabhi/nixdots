@@ -26,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, aagl, firefox-addons, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -55,7 +55,6 @@
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
-          inherit firefox-addons;
           inherit inputs;
         };
       };
