@@ -33,7 +33,7 @@
     glxinfo
     nvitop
     mangohud
-    gnome.gnome-tweaks
+    gnome-tweaks
     inotify-tools
     libnotify
     jq
