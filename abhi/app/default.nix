@@ -4,5 +4,6 @@
     ./firefox.nix
     ./wezterm.nix
     ./spotify.nix
+    ./zathura.nix
   ];
 }
