@@ -62,6 +62,9 @@ local plugins = {
 					require'lspconfig'.clangd.setup {
 						cmd = { "clangd" },
 					}
+					require'lspconfig'.kotlin_language_server.setup {
+						cmd = {"kotlin-language-server"},
+					}
 				end,
 			},
 			{ 'williamboman/mason.nvim' },

@@ -62,10 +62,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
@@ -103,7 +102,7 @@
 
   programs.gamemode.enable = true;
 
-  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
+  services.udev.packages = [ pkgs.gnome-settings-daemon ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -198,6 +197,7 @@
 
   # List services that you want to enable:
 
+  services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
   services.flatpak.enable = true;
 

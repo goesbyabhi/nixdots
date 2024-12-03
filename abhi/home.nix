@@ -28,7 +28,7 @@
 
   home.packages = (with pkgs; [
     hello
-    discord
+    vesktop
     fastfetch
     glxinfo
     nvitop
@@ -52,6 +52,7 @@
     linuxKernel.packages.linux_6_6.v4l2loopback
     rssguard
     dosbox
+    jetbrains.idea-ultimate
     # openbox-menu
     # obconf
     # lxappearance

@@ -42,8 +42,7 @@ map("n", "<C-Down>", ":horizontal resize -3<CR>") -- Control+Down resizes horizo
 -- map("n", "<leader>e", ":Ex<CR>")			-- space+e toggles netrw tree view (DISABLED)
 map("n", "<C-n>", "<cmd> NvimTreeToggle <CR>") -- Opens the NvimTree file explorer
 -- Easy way to get back to normal mode from home row
-map("i", "kj", "<Esc>")                        -- kj simulates ESC
-map("i", "jk", "<Esc>")                        -- jk simulates ESC
+map("i", "jj", "<Esc>")                        -- jk simulates ESC
 -- map("i", "ff", "<Esc>") -- zz simulates ESC
 
 -- Visual Maps
