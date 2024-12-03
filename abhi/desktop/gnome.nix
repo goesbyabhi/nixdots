@@ -6,7 +6,7 @@ let
     # paperwm.extensionUuid
     appindicator.extensionUuid
     system-monitor.extensionUuid
-    gradient-top-bar.extensionUuid
+    # gradient-top-bar.extensionUuid
     compact-top-bar.extensionUuid
     desktop-icons-ng-ding.extensionUuid
   ];
@@ -111,6 +111,9 @@ in
         binding = "<Super>b";
         command = "firefox";
         name = "Launch firefox";
+      };
+      "org/gnome/mutter" = {
+        center-new-windows = true;
       };
     };
   };
