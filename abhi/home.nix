@@ -11,7 +11,8 @@
 # in
 {
   imports = [
-    ./desktop/gnome.nix
+    inputs.carburetor.homeManagerModules.default
+    ./desktop
     ./app
     ./shell/cli.nix
   ];
@@ -27,32 +28,42 @@
   };
 
   home.packages = (with pkgs; [
-    hello
-    vesktop
-    fastfetch
-    glxinfo
-    nvitop
-    mangohud
-    gnome-tweaks
-    inotify-tools
-    libnotify
-    jq
-    unzip
-    ripgrep
-    fzf
     bat
-    gdb
-    wl-clipboard
-    xsel
-    xclip
-    qbittorrent
-    w3m
-    xorg.xev
-    patchelf
-    linuxKernel.packages.linux_6_6.v4l2loopback
-    rssguard
+    coreutils
+    desktop-file-utils
     dosbox
+    fastfetch
+    fd
+    fzf
+    gdb
+    glxinfo
+    gnome-tweaks
+    hello
+    imagemagick
+    inotify-tools
+    jdk
     jetbrains.idea-ultimate
+    jq
+    libnotify
+    linuxKernel.packages.linux_6_6.v4l2loopback
+    mangohud
+		newsflash
+    nixd
+    nodejs_23
+    node2nix
+    nvitop
+    patchelf
+    qbittorrent
+    ripgrep
+    rssguard
+    unzip
+    vesktop
+    w3m
+    wl-clipboard
+    xclip
+    xorg.xev
+    xsel
+    zip
     # openbox-menu
     # obconf
     # lxappearance
@@ -73,9 +84,8 @@
     # dmenu
     # blueman
   ]) ++ (with pkgs-unstable; [
-    neovim
+    # neovim
     vscode
-    gcc
   ]) ++ (with pkgs.gnomeExtensions; [
     dash-to-dock
     blur-my-shell
@@ -88,8 +98,10 @@
   ]);
 
   home.file = {
-    ".config/nvim".source = ./nvim;
+    # ".config/nvim".source = ./nvim;
   };
+
+  news.display = "silent";
 
   # Run unset __HM_SESS_VARS_SOURCED ; . .profile
   # after you've built the stuff. This will do some weird refresher as the sessionas are not set properly
@@ -99,12 +111,15 @@
     BAT_THEME = "OneHalfDark";
     XCURSOR_THEME = "McMojave-cursors";
     LC_CTYPE = "en_IN.utf8";
+    JAVA_HOME = "${pkgs.jdk}";
   };
 
   home.sessionPath = [
     # "$HOME/.cargo/bin"
+    ".npm-packages/bin/"
+    "$HOME/.emacs.d/bin"
+    "${pkgs.jdk}/bin"
   ];
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

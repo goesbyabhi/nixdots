@@ -65,6 +65,9 @@ local plugins = {
 					require'lspconfig'.kotlin_language_server.setup {
 						cmd = {"kotlin-language-server"},
 					}
+					require'lspconfig'.nixd.setup {
+						cmd = {"nixd"},
+					}
 				end,
 			},
 			{ 'williamboman/mason.nvim' },

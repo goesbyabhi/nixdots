@@ -1,4 +1,5 @@
 {
+  carburetor.themes.wezterm.enable = true;
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -18,7 +19,7 @@
 
             				 config.audible_bell = "Disabled"
 
-            				 config.color_scheme = 'carbonfox'
+            				 config.color_scheme = 'Carburator Warm'
             				 config.background = {
             					 {
             						 source = {

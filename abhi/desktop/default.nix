@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   extensions = with pkgs.gnomeExtensions; [
     dash-to-dock.extensionUuid
@@ -8,10 +8,15 @@ let
     system-monitor.extensionUuid
     # gradient-top-bar.extensionUuid
     compact-top-bar.extensionUuid
-    desktop-icons-ng-ding.extensionUuid
+    # desktop-icons-ng-ding.extensionUuid
   ];
+
 in
 {
+  imports = [
+    ./theme.nix
+  ];
+  gtk.enable = true;
   dconf = {
     enable = true;
     settings = {
@@ -100,6 +105,8 @@ in
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
         ];
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
@@ -111,6 +118,16 @@ in
         binding = "<Super>b";
         command = "firefox";
         name = "Launch firefox";
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+        binding = "<Super>e";
+        command = "wezterm start -- bash -c ranger";
+        name = "Launch ranger in wezterm";
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+        binding = "<Super>d";
+        command = "emacs";
+        name = "Launch DOOM/emacs";
       };
       "org/gnome/mutter" = {
         center-new-windows = true;

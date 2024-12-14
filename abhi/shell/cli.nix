@@ -28,7 +28,8 @@
         				}
         			eval "$(direnv hook bash)"
         				if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
-        					'';
+        					[[ -s "/home/abhi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/abhi/.sdkman/bin/sdkman-init.sh"
+        						'';
       initExtra = ''
         				. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
         				'';

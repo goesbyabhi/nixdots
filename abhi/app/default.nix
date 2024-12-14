@@ -5,5 +5,7 @@
     ./wezterm.nix
     ./spotify.nix
     ./zathura.nix
+    ./emacs.nix
+		./neovim
   ];
 }

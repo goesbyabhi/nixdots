@@ -50,8 +50,17 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome = {
+		enable = true;
+		extraGSettingsOverridePackages = with pkgs;[
+			gnome.nautilus
+		];
+	};
   # services.xserver.windowManager.openbox.enable = true;
+	services.xserver.windowManager.session = [{
+		name = "onyx";
+		start = "/home/abhi/Documents/Dev/projs/cpp/onyx/result/bin/onyx_x86_64-linux";
+	}];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -163,6 +172,7 @@
     # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # wget
     # git
+		gjs
     auto-cpufreq
     (
       let base = pkgs.appimageTools.defaultFhsEnvArgs; in

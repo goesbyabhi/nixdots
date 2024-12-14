@@ -24,16 +24,17 @@
     nur = {
       url = "github:nix-community/NUR";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+		nixvim = {
+			url = "github:nix-community/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+    carburetor.url = "github:ozwaldorf/carburetor";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-stable = nixpkgs.legacyPackages.${system};
       pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       lib = nixpkgs.lib;
     in
@@ -53,13 +54,14 @@
       };
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = import nixpkgs { inherit pkgs-stable; inherit system; overlays = [ inputs.carburetor.overlays.default ]; };
         modules = [
           ./abhi/home.nix
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
           inherit inputs;
+          inherit system;
         };
       };
     };
