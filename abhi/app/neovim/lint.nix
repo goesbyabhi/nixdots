@@ -2,8 +2,8 @@
   programs.nixvim.plugins.lint = {
     enable = true;
     lintersByFt = {
-      # javascript = [ "eslint" ];
-      # typescript = [ "eslint" ];
+      javascript = [ "eslint" ];
+      typescript = [ "eslint" ];
       javascriptreact = [ "eslint" ];
       typescriptreact = [ "eslint" ];
       svelte = [ "eslint" ];
