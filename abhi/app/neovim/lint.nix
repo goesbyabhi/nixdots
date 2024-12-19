@@ -12,7 +12,7 @@
       html = [ "htmlhint" ];
       go = [ "golangcilint" ];
       kotlin = [ "ktlint" ];
-      nix = [ "nix" "statix" ];
+      nix = [ "statix" ];
       python = [ "pylint" ];
     };
     autoCmd = {
