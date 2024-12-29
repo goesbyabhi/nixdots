@@ -31,7 +31,12 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
-
+	i18n.inputMethod = {
+		enabled = "ibus";
+		ibus.engines = with pkgs.ibus-engines; [
+			uniemoji
+		];
+	};
   i18n.extraLocaleSettings = {
     LC_CTYPE = "en_IN";
     LC_ADDRESS = "en_IN";

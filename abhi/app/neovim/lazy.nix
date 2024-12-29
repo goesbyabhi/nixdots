@@ -27,7 +27,7 @@
 				{ pkg = pkgs.vimPlugins.nvim-cmp;
 				dependencies = with pkgs.vimPlugins; [cmp-nvim-lsp cmp-nvim-lua cmp_luasnip luasnip cmp-buffer cmp-path];
 			}
-				{ pkg = pkgs.vimPlugins.nvim-tree-lua; }
+				# { pkg = pkgs.vimPlugins.nvim-tree-lua; }
 				{ pkg = pkgs.vimPlugins.nvim-lint;
 				dependencies = with pkgs; [ eslint_d statix clang-tools htmlhint ktlint pylint golangci-lint cpplint ];
 			}

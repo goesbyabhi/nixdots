@@ -18,7 +18,8 @@
 		{ mode = "n"; key = "<C-Right>"; action = ":vertical resize -3<CR>"; options.desc = "Decrease vertical split size"; }
 		{ mode = "n"; key = "<C-Up>"; action = ":horizontal resize +3<CR>"; options.desc = "Increase horizontal split size"; }
 		{ mode = "n"; key = "<C-Down>"; action = ":horizontal resize -3<CR>"; options.desc = "Decrease horizontal split size"; }
-		{ mode = "n"; key = "<C-n>"; action = "<cmd>NvimTreeToggle<CR>"; options.desc = "Toggle NvimTree"; }
+		{ mode = "n"; key = "<C-n>"; action = "<cmd>Ex<CR>"; options.desc = "Toggle NetRW"; }
+		# { mode = "n"; key = "<C-n>"; action = "<cmd>NvimTreeToggle<CR>"; options.desc = "Toggle NvimTree"; }
 		{ mode = "i"; key = "jj"; action = "<Esc>"; options.desc = "Exit insert mode"; }
 		{ mode = "v"; key = "<leader>r"; action = "\"hy:%s/<C-r>h//g<left><left>"; options.desc = "Replace all instances of highlighted words"; }
 		{ mode = "v"; key = "<C-s>"; action = ":sort<CR>"; options.desc = "Sort highlighted text"; }

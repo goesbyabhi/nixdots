@@ -1,14 +1,4 @@
 { config, pkgs, pkgs-unstable, inputs, ... }:
-# let
-#   nurPkgs = import inputs.nixpkgs {
-#     config =
-#       {
-#         allowUnfree = true;
-#       };
-#     system = pkgs.system;
-#     overlays = [ inputs.nur.overlay ];
-#   };
-# in
 {
   imports = [
     inputs.carburetor.homeManagerModules.default
@@ -29,6 +19,7 @@
 
   home.packages = (with pkgs; [
     bat
+		calibre
     coreutils
     desktop-file-utils
     dosbox
@@ -64,42 +55,12 @@
     xorg.xev
     xsel
     zip
-    # openbox-menu
-    # obconf
-    # lxappearance
-    # plank
-    # picom
-    # nitrogen
-    # menumaker
-    # networkmanager_dmenu
-    # calc
-    # rofi
-    # polybar
-    # material-icons
-    # sassc
-    # xfce.xfce4-settings
-    # pcmanfm
-    # dunst
-    # scrot
-    # dmenu
-    # blueman
-  ]) ++ (with pkgs-unstable; [
-    # neovim
-    vscode
   ]) ++ (with pkgs.gnomeExtensions; [
     dash-to-dock
-    blur-my-shell
-    paperwm
     appindicator
     gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
     compact-top-bar
-    # ]) ++ (with nurPkgs; [
-    #   nur.repos.nltch.spotify-adblock
   ]);
-
-  home.file = {
-    # ".config/nvim".source = ./nvim;
-  };
 
   news.display = "silent";
 
