@@ -19,12 +19,12 @@
 
   home.packages = (with pkgs; [
     bat
-		calibre
     coreutils
     desktop-file-utils
     dosbox
     fastfetch
     fd
+		foliate
     fzf
     gdb
     glxinfo
@@ -76,7 +76,6 @@
   };
 
   home.sessionPath = [
-    # "$HOME/.cargo/bin"
     ".npm-packages/bin/"
     "$HOME/.emacs.d/bin"
     "${pkgs.jdk}/bin"
