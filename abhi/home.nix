@@ -1,7 +1,6 @@
 { config, pkgs, pkgs-unstable, inputs, ... }:
 {
   imports = [
-    inputs.carburetor.homeManagerModules.default
     ./desktop
     ./app
     ./shell/cli.nix
@@ -19,6 +18,7 @@
 
   home.packages = (with pkgs; [
     bat
+		brave
     coreutils
     desktop-file-utils
     dosbox

@@ -27,7 +27,6 @@
 			url = "github:nix-community/nixvim";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-    carburetor.url = "github:ozwaldorf/carburetor";
   };
 
   outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }@inputs:
@@ -53,7 +52,7 @@
       };
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit pkgs-stable; inherit system; overlays = [ inputs.carburetor.overlays.default ]; };
+        pkgs = import nixpkgs { inherit pkgs-stable; inherit system; };
         modules = [
           ./abhi/home.nix
         ];

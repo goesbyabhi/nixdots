@@ -3,19 +3,13 @@ let
   extensions = with pkgs.gnomeExtensions; [
     dash-to-dock.extensionUuid
     blur-my-shell.extensionUuid
-    # paperwm.extensionUuid
     appindicator.extensionUuid
     system-monitor.extensionUuid
-    # gradient-top-bar.extensionUuid
     compact-top-bar.extensionUuid
-    # desktop-icons-ng-ding.extensionUuid
   ];
 
 in
 {
-  imports = [
-    ./theme.nix
-  ];
   gtk.enable = true;
   dconf = {
     enable = true;
