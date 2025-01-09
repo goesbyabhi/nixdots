@@ -3,7 +3,6 @@
   imports = [
     ./desktop
     ./app
-    ./shell/cli.nix
   ];
 
   home.username = "abhi";

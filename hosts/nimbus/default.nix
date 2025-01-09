@@ -18,7 +18,7 @@
 		systemd-boot.configurationLimit = 3;
 	};
 
-	networking.hostName = "nixos"; # Define your hostname.
+	networking.hostName = "nimbus"; # Define your hostname.
 # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 # Configure network proxy if necessary
@@ -181,15 +181,16 @@
 # wget
 # git
 		gjs
-			wineWowPackages.stable
-			wineWowPackages.waylandFull
-			winetricks
-			auto-cpufreq
-			(
-			 let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-			 pkgs.buildFHSUserEnv (base // {
-				 name = "fhs";
-				 targetPkgs = pkgs:
+		home-manager
+		wineWowPackages.waylandFull
+		wineWowPackages.stable
+		winetricks
+		auto-cpufreq
+		(
+		 let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+		 pkgs.buildFHSUserEnv (base // {
+			 name = "fhs";
+			 targetPkgs = pkgs:
 # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
 # lacking many basic packages needed by most software.
 # Therefore, we need to add them manually.
@@ -200,7 +201,7 @@
 					 ncurses
 # Feel free to add more packages here if needed.
 				 ]
-				 );
+			 );
 				 profile = "export FHS=1";
 				 runScript = "bash";
 				 extraOutputsToInstall = [ "dev" ];

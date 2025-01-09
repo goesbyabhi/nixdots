@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +30,7 @@
 		};
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, aagl, ... }@inputs:
+  outputs = { nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, aagl, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-stable = nixpkgs.legacyPackages.${system};
@@ -38,10 +39,10 @@
     in
     {
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
+        nimbus = lib.nixosSystem {
           inherit system;
           modules = [
-            ./nixos/configuration.nix
+            ./hosts/nimbus
             {
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Set up Cachix
@@ -49,12 +50,21 @@
             }
           ];
         };
+
+				senzu = lib.nixosSystem {
+					inherit system;
+					modules = [
+						nixos-wsl.nixosModules.default
+						./hosts/senzu
+					];
+				};
       };
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs { inherit pkgs-stable; inherit system; };
         modules = [
-          ./abhi/home.nix
+          ./users/abhi
+					./common
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
@@ -62,5 +72,18 @@
           inherit system;
         };
       };
+
+			homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
+				pkgs = import nixpkgs { inherit pkgs-unstable; inherit system; };
+				modules = [
+					./users/wsl
+					./common
+				];
+				extraSpecialArgs = {
+					inherit pkgs-unstable;
+					inherit inputs;
+					inherit system;
+				};
+			};
     };
 }
