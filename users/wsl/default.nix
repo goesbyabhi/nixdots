@@ -1,31 +1,17 @@
-{ config, pkgs, pkgs-unstable, inputs, ... }:
-# let
-#   nurPkgs = import inputs.nixpkgs {
-#     config =
-#       {
-#         allowUnfree = true;
-#       };
-#     system = pkgs.system;
-#     overlays = [ inputs.nur.overlay ];
-#   };
-# in
+{ pkgs, ... }:
 {
-  imports = [
-    # ./app
-    # ./shell/cli.nix
-  ];
-
-  home.username = "wsl";
-  home.homeDirectory = "/home/wsl";
-
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+	home = {
+		username = "wsl";
+		homeDirectory = "/home/wsl";
+		stateVersion = "24.05"; # Please read the comment before changing.
+	};
 
   nixpkgs.config = {
     allowUnfree = true;
-    allowUnfreePredicate = (_: true);
+    allowUnfreePredicate = _: true;
   };
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     bat
     coreutils
     fastfetch
@@ -42,7 +28,7 @@
     xorg.xev
     xsel
     zip
-  ]);
+  ];
 
   news.display = "silent";
 
