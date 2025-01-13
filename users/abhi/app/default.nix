@@ -6,7 +6,6 @@
     ./spotify.nix
     ./zathura.nix
     ./emacs.nix
-		./neovim
 		./misc.nix
   ];
 }
