@@ -5,7 +5,6 @@
 		./lazy.nix
 		./lsp.nix
 		./cmp.nix
-		# ./tree.nix
 		./lint.nix
 		./tabby.nix
 		./misc.nix
