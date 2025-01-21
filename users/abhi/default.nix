@@ -5,22 +5,23 @@
     ./app
   ];
 
-  home.username = "abhi";
-  home.homeDirectory = "/home/abhi";
-
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home = {
+		username = "abhi";
+		homeDirectory = "/home/abhi";
+		stateVersion = "24.05"; # Please read the comment before changing.
+	};
 
   nixpkgs.config = {
     allowUnfree = true;
-    allowUnfreePredicate = (_: true);
+    allowUnfreePredicate = _: true;
   };
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     bat
 		brave
+		bottles
     coreutils
     desktop-file-utils
-    dosbox
     fastfetch
     fd
 		foliate
@@ -32,7 +33,6 @@
     imagemagick
     inotify-tools
     jdk
-    jetbrains.idea-ultimate
     jq
     libnotify
     linuxKernel.packages.linux_6_6.v4l2loopback
@@ -40,7 +40,6 @@
 		newsflash
     nixd
     nodejs_23
-    node2nix
     nvitop
     patchelf
     qbittorrent
@@ -54,20 +53,12 @@
     xorg.xev
     xsel
     zip
-  ]) ++ (with pkgs.gnomeExtensions; [
-    dash-to-dock
-    appindicator
-    gradient-top-bar #manually upgrade from extensions.gnome.org site if outdated
-    compact-top-bar
-  ]);
+  ];
 
   news.display = "silent";
 
-  # Run unset __HM_SESS_VARS_SOURCED ; . .profile
-  # after you've built the stuff. This will do some weird refresher as the sessionas are not set properly
   home.sessionVariables = {
     EDITOR = "nvim";
-    # LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     BAT_THEME = "OneHalfDark";
     XCURSOR_THEME = "McMojave-cursors";
     LC_CTYPE = "en_IN.utf8";

@@ -1,11 +1,8 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   extensions = with pkgs.gnomeExtensions; [
-    dash-to-dock.extensionUuid
-    blur-my-shell.extensionUuid
     appindicator.extensionUuid
     system-monitor.extensionUuid
-    compact-top-bar.extensionUuid
   ];
 
 in
@@ -110,7 +107,7 @@ in
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         binding = "<Super>b";
-        command = "firefox";
+        command = "brave";
         name = "Launch firefox";
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {

@@ -64,7 +64,6 @@
 			nautilus
 		];
 	};
-# services.xserver.windowManager.openbox.enable = true;
 	services.xserver.windowManager.session = [{
 		name = "onyx";
 		start = "/home/abhi/Documents/Dev/onyx/result/bin/onyx_x86_64-linux";
