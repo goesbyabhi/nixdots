@@ -33,6 +33,7 @@
     imagemagick
     inotify-tools
     jdk
+    jetbrains.idea-ultimate
     jq
     libnotify
     linuxKernel.packages.linux_6_6.v4l2loopback
@@ -40,6 +41,7 @@
 		newsflash
     nixd
     nodejs_23
+    node2nix
     nvitop
     patchelf
     qbittorrent
