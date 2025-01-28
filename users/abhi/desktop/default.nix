@@ -2,6 +2,8 @@
 let
   extensions = with pkgs.gnomeExtensions; [
     appindicator.extensionUuid
+		compact-top-bar.extensionUuid
+		dash-to-dock.extensionUuid
     system-monitor.extensionUuid
   ];
 

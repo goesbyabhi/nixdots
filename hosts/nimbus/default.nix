@@ -83,6 +83,12 @@
 		enable32Bit = true;
 	};
 
+
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+	};
+
 	services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
 	hardware.nvidia.modesetting.enable = true;
 	hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
@@ -143,30 +149,42 @@
 	users.users.abhi = {
 		isNormalUser = true;
 		description = "Abhishek Panda";
-		extraGroups = [ "networkmanager" "wheel" "docker" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
 		packages = with pkgs; [
 #  thunderbird
 		];
 	};
 
 # Install firefox.
-	programs.firefox.enable = true;
+	programs = {
+		droidcam.enable = true;
+		firefox.enable = true;
+	};
 
-	programs.droidcam.enable = true;
-
-	virtualisation.docker = {
-		enable = true;
-		rootless = {
+	virtualisation = {
+		libvirtd = {
 			enable = true;
-			setSocketVariable = true;
+			qemu = {
+				swtpm.enable = true;
+				ovmf.enable = true;
+				ovmf.packages = [ pkgs.OVMFFull.fd ];
+			};
 		};
-		daemon.settings = {
-			data-root = "~/.docker-data";
-			userland-proxy = false;
-			experimental = true;
-			metrics-addr = "0.0.0.0:9323";
-			ipv6 = true;
-			fixed-cidr-v6 = "fd00::/80";
+		spiceUSBRedirection.enable = true;
+		docker = {
+			enable = true;
+			rootless = {
+				enable = true;
+				setSocketVariable = true;
+			};
+			daemon.settings = {
+				data-root = "~/.docker-data";
+				userland-proxy = false;
+				experimental = true;
+				metrics-addr = "0.0.0.0:9323";
+				ipv6 = true;
+				fixed-cidr-v6 = "fd00::/80";
+			};
 		};
 	};
 
@@ -179,17 +197,24 @@
 # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 # wget
 # git
-		gjs
-		home-manager
-		wineWowPackages.waylandFull
-		wineWowPackages.stable
-		winetricks
-		auto-cpufreq
-		(
-		 let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-		 pkgs.buildFHSUserEnv (base // {
-			 name = "fhs";
-			 targetPkgs = pkgs:
+			gjs
+			virt-manager
+			virt-viewer
+			spice spice-gtk
+			spice-protocol
+			win-virtio
+			win-spice
+			gnome.adwaita-icon-theme
+			home-manager
+			wineWowPackages.waylandFull
+			wineWowPackages.stable
+			winetricks
+			auto-cpufreq
+			(
+			 let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+			 pkgs.buildFHSUserEnv (base // {
+				 name = "fhs";
+				 targetPkgs = pkgs:
 # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
 # lacking many basic packages needed by most software.
 # Therefore, we need to add them manually.
@@ -200,7 +225,7 @@
 					 ncurses
 # Feel free to add more packages here if needed.
 				 ]
-			 );
+				 );
 				 profile = "export FHS=1";
 				 runScript = "bash";
 				 extraOutputsToInstall = [ "dev" ];
@@ -231,6 +256,7 @@
 			services.power-profiles-daemon.enable = false;
 			services.auto-cpufreq.enable = true;
 			services.flatpak.enable = true;
+			services.spice-vdagentd.enable = true;
 
 # Enable the OpenSSH daemon.
 # services.openssh.enable = true;

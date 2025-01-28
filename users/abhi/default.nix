@@ -16,7 +16,7 @@
     allowUnfreePredicate = _: true;
   };
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     bat
 		brave
 		bottles
@@ -45,8 +45,10 @@
     nvitop
     patchelf
     qbittorrent
+		quickemu
     ripgrep
     rssguard
+		swtpm
     unzip
     vesktop
     w3m
@@ -55,7 +57,10 @@
     xorg.xev
     xsel
     zip
-  ];
+  ]) ++ (with pkgs.gnomeExtensions; [
+		compact-top-bar
+		dash-to-dock
+	]);
 
   news.display = "silent";
 

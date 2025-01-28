@@ -1,5 +1,6 @@
 {
   imports = [
+		./helix.nix
     ./firefox.nix
     ./wezterm.nix
     ./spotify.nix
