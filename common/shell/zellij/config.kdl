@@ -144,11 +144,11 @@ keybinds clear-defaults=true {
 		bind "Ctrl j" { MoveFocus "Down"; }
 		bind "Ctrl k" { MoveFocus "Up"; }
 
-		bind "Ctrl d" { HalfPageScrollDown; }
-		bind "Ctrl u" { HalfPageScrollUp; }
+		bind "Ctrl J" { HalfPageScrollDown; }
+		bind "Ctrl K" { HalfPageScrollUp; }
 
-		bind "Ctrl f" { PageScrollDown; }
-		bind "Ctrl b" { PageScrollUp; }
+		bind "Ctrl H" { PageScrollDown; }
+		bind "Ctrl L" { PageScrollUp; }
 	}
 	shared_except "normal" "locked" {
 		bind "Enter" "Esc" { SwitchToMode "Normal"; }
