@@ -4,6 +4,7 @@
     capabilities = "capabilities.textDocument.completion.completionItem.snippetSupport = true";
     inlayHints = true;
     servers = {
+			arduino_language_server.enable = true;
       clangd.enable = true;
       cssls = {
         enable = true;
