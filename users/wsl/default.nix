@@ -33,7 +33,6 @@
   news.display = "silent";
 
   home.sessionVariables = {
-    EDITOR = "nvim";
     LC_CTYPE = "en_IN.utf8";
     JAVA_HOME = "${pkgs.jdk}";
   };

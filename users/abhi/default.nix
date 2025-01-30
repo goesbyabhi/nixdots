@@ -65,7 +65,6 @@
   news.display = "silent";
 
   home.sessionVariables = {
-    # EDITOR = "nvim";
     BAT_THEME = "OneHalfDark";
     XCURSOR_THEME = "McMojave-cursors";
     LC_CTYPE = "en_IN.utf8";
