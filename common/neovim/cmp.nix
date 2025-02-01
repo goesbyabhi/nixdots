@@ -6,7 +6,7 @@
     cmp_luasnip.enable = true;
     cmp-nvim-lsp.enable = true;
     cmp-nvim-lua.enable = true;
-    # friendly-snippets.enable = true;
+    friendly-snippets.enable = true;
     cmp = {
       enable = true;
       settings = {

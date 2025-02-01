@@ -11,9 +11,10 @@
 				{
 				pkg = pkgs.vimPlugins.nvim-treesitter;
 				opts = {
-					ensure_installed = ["javascript" "typescript" "c" "lua" "cpp" "nix"];
+					ensure_installed = ["javascript" "typescript" "c" "lua" "cpp" "nix" ];
 					sync_install = false;
 					auto_install = true;
+					indent.enable = true;
 					highlight = {
 						enable = true;
 						additional_vim_regex_highlighting = false;
@@ -26,11 +27,11 @@
 				{ pkg = pkgs.vimPlugins.nvim-lspconfig; }
 				{ pkg = pkgs.vimPlugins.nvim-cmp;
 				dependencies = with pkgs.vimPlugins; [cmp-nvim-lsp cmp-nvim-lua cmp_luasnip luasnip cmp-buffer cmp-path];
-			}
+				}
 				# { pkg = pkgs.vimPlugins.nvim-tree-lua; }
 				{ pkg = pkgs.vimPlugins.nvim-lint;
 				dependencies = with pkgs; [ eslint_d statix clang-tools htmlhint ktlint pylint golangci-lint cpplint ];
-			}
+				}
 				{ pkg = pkgs.vimPlugins.nvim-web-devicons; }
 				{ pkg = pkgs.vimPlugins.feline-nvim;
 				config = ''
@@ -342,6 +343,10 @@
 				}
 				{ pkg = pkgs.vimPlugins.nvim-colorizer-lua; }
 				{ pkg = pkgs.vimPlugins.nvim-autopairs; }
+				{ pkg = pkgs.vimPlugins.neogit;
+					dependencies = with pkgs; [ vimPlugins.diffview-nvim ];
+					config = true;
+				}
 			];
 		};
 	};

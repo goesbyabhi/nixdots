@@ -26,6 +26,7 @@
     fd
 		foliate
     fzf
+    gcc
     gdb
     glxinfo
     gnome-tweaks

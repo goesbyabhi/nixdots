@@ -1,7 +1,7 @@
 { pkgs-unstable, ... }: {
   programs.helix = {
     enable = true;
-		defaultEditor = true;
+		defaultEditor = false;
 		package = pkgs-unstable.helix;
 		languages.language = [
 			{
