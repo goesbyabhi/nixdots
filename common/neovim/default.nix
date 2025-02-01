@@ -53,7 +53,7 @@
 			expandtab = false;
 			smartindent = true;
 			showcmd = true;
-			cmdheight = 0;
+			cmdheight = 1;
 			sidescrolloff = 15;
 			fillchars = "eob: ";
 			completeopt.__raw = "{\"menuone\", \"noselect\"}";
