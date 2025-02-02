@@ -53,7 +53,7 @@
 			expandtab = false;
 			smartindent = true;
 			showcmd = true;
-			cmdheight = 1;
+			# cmdheight = 2;
 			sidescrolloff = 15;
 			fillchars = "eob: ";
 			completeopt.__raw = "{\"menuone\", \"noselect\"}";
@@ -71,10 +71,10 @@
 			};
 		};
 
-		colorschemes.nightfox = {
-			enable = true;
-			flavor = "carbonfox";
-		};
+		# colorschemes.nightfox = {
+		# 	enable = false;
+		# 	flavor = "carbonfox";
+		# };
 
 		autoCmd = [
 			{
@@ -145,7 +145,6 @@
 					vim.diagnostic.open_float(nil, opts)
 				end
 			})
-			vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 			'';
 	};
 }

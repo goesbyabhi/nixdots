@@ -347,6 +347,15 @@
 					dependencies = with pkgs; [ vimPlugins.diffview-nvim ];
 					config = true;
 				}
+				{ pkg = pkgs.vimPlugins.eva01-vim;
+					lazy = false;
+					priority = 1000;
+					config = ''
+						function()
+							vim.cmd.colorscheme "eva01"
+						end
+					'';
+				}
 			];
 		};
 	};
