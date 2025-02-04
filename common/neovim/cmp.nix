@@ -17,17 +17,17 @@
           maxViewEntries = 30;
         };
         mapping = {
-          "<C-p>" = "cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select })";
-          "<C-n>" = "cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select })";
+          "<C-p>" = "cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Replace })";
+          "<C-n>" = "cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Replace })";
           "<CR>" = "cmp.mapping.confirm({ select = true })";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-e>" = "cmp.mapping.abort()";
         };
-        snippet = {expand = "luasnip";};
+        snippet = {expand = "luasnip"; loadFromVscode = true;};
         sources = [
+					{ name = "luasnip"; }
           { name = "buffer"; }
           { name = "path"; }
-          { name = "luasnip"; }
           { name = "nvim_lsp"; }
           { name = "nvim_lua"; }
         ];
