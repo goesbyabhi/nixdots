@@ -2,13 +2,12 @@
 let
   extensions = with pkgs.gnomeExtensions; [
     appindicator.extensionUuid
-		compact-top-bar.extensionUuid
-		dash-to-dock.extensionUuid
+    compact-top-bar.extensionUuid
+    dash-to-dock.extensionUuid
     system-monitor.extensionUuid
   ];
 
-in
-{
+in {
   gtk.enable = true;
   dconf = {
     enable = true;
@@ -42,12 +41,8 @@ in
       "org/gnome/shell/extensions/blur-my-shell/window-list" = {
         blur = false;
       };
-      "org/gnome/shell/extensions/blur-my-shell/panel" = {
-        blur = false;
-      };
-      "org/gnome/shell/extensions/blur-my-shell" = {
-        hacks-level = 0;
-      };
+      "org/gnome/shell/extensions/blur-my-shell/panel" = { blur = false; };
+      "org/gnome/shell/extensions/blur-my-shell" = { hacks-level = 0; };
       "org/gnome/shell/extensions/system-monitor" = {
         show-upload = false;
         show-download = false;
@@ -102,29 +97,31 @@ in
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
         ];
       };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        binding = "<Super>t";
-        command = "wezterm";
-        name = "Launch terminal";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-        binding = "<Super>b";
-        command = "brave";
-        name = "Launch firefox";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-        binding = "<Super>e";
-        command = "wezterm start -- bash -c ranger";
-        name = "Launch ranger in wezterm";
-      };
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
-        binding = "<Super>d";
-        command = "emacs";
-        name = "Launch DOOM/emacs";
-      };
-      "org/gnome/mutter" = {
-        center-new-windows = true;
-      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+        {
+          binding = "<Super>t";
+          command = "wezterm";
+          name = "Launch terminal";
+        };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" =
+        {
+          binding = "<Super>b";
+          command = "brave";
+          name = "Launch firefox";
+        };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" =
+        {
+          binding = "<Super>e";
+          command = "wezterm start -- bash -c ranger";
+          name = "Launch ranger in wezterm";
+        };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" =
+        {
+          binding = "<Super>d";
+          command = "emacs";
+          name = "Launch DOOM/emacs";
+        };
+      "org/gnome/mutter" = { center-new-windows = true; };
     };
   };
 }

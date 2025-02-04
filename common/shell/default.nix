@@ -9,30 +9,23 @@
         cat = "bat";
         rr = "ranger";
       };
-      historyIgnore = [
-        "ls"
-        "l"
-        "nvim"
-        "cd"
-        "exit"
-        "ranger"
-      ];
+      historyIgnore = [ "ls" "l" "nvim" "cd" "exit" "ranger" ];
       bashrcExtra = ''
-        				function ranger {
-        					local quit_cd_wd_file="$HOME/.cache/ranger/quit_cd_wd"        # The path must be the same as <file_saved_wd> in map.
-        						command ranger --cmd="map X quitall_cd_wd $quit_cd_wd_file" "$@"
-        						if [ -s "$quit_cd_wd_file" ]; then
-        							cd "$(cat $quit_cd_wd_file)"
-        								true > "$quit_cd_wd_file"
-        								fi
-        				}
-        			eval "$(direnv hook bash)"
-        				if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
-        					[[ -s "/home/abhi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/abhi/.sdkman/bin/sdkman-init.sh"
-        						'';
+        	function ranger {
+        		local quit_cd_wd_file="$HOME/.cache/ranger/quit_cd_wd"        # The path must be the same as <file_saved_wd> in map.
+        			command ranger --cmd="map X quitall_cd_wd $quit_cd_wd_file" "$@"
+        			if [ -s "$quit_cd_wd_file" ]; then
+        				cd "$(cat $quit_cd_wd_file)"
+        					true > "$quit_cd_wd_file"
+        					fi
+        	}
+        eval "$(direnv hook bash)"
+        	if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+        		[[ -s "/home/abhi/.sdkman/bin/sdkman-init.sh" ]] && source "/home/abhi/.sdkman/bin/sdkman-init.sh"
+        			'';
       initExtra = ''
-        				. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-        				'';
+        . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      '';
     };
 
     git = {
@@ -81,9 +74,7 @@
     zoxide = {
       enable = true;
       enableBashIntegration = true;
-      options = [
-        "--cmd cd"
-      ];
+      options = [ "--cmd cd" ];
     };
 
     ranger = {
@@ -105,12 +96,12 @@
         }
       ];
       extraConfig = ''
-        				set preview_images_method iterm2
-        				map X quitall_cd_wd
-        				map f console fzf_filter%space
-        				map z console z%space
-        				map Z zi
-        				'';
+        set preview_images_method iterm2
+        map X quitall_cd_wd
+        map f console fzf_filter%space
+        map z console z%space
+        map Z zi
+      '';
     };
 
     zellij.enable = true;

@@ -1,27 +1,26 @@
 {
   programs.nixvim.plugins.lsp = {
     enable = true;
-    capabilities = "capabilities.textDocument.completion.completionItem.snippetSupport = true";
+    capabilities =
+      "capabilities.textDocument.completion.completionItem.snippetSupport = true";
     inlayHints = true;
     servers = {
-			arduino_language_server.enable = true;
+      arduino_language_server.enable = true;
       clangd.enable = true;
       cssls = {
         enable = true;
-        extraOptions = {
-          capabilities.__raw = "capabilities";
-        };
+        extraOptions = { capabilities.__raw = "capabilities"; };
       };
       eslint = {
         enable = true;
         extraOptions = {
           on_attach.__raw = ''
-          function(client, bufnr)
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end
+            function(client, bufnr)
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                command = "EslintFixAll",
+              })
+            end
           '';
         };
       };

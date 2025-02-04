@@ -1,15 +1,11 @@
-{ config, pkgs, pkgs-unstable, inputs, ... }:
-{
-  imports = [
-    ./desktop
-    ./app
-  ];
+{ config, pkgs, pkgs-unstable, inputs, ... }: {
+  imports = [ ./desktop ./app ];
 
   home = {
-		username = "abhi";
-		homeDirectory = "/home/abhi";
-		stateVersion = "24.05"; # Please read the comment before changing.
-	};
+    username = "abhi";
+    homeDirectory = "/home/abhi";
+    stateVersion = "24.05"; # Please read the comment before changing.
+  };
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -18,13 +14,13 @@
 
   home.packages = (with pkgs; [
     bat
-		brave
-		bottles
+    brave
+    bottles
     coreutils
     desktop-file-utils
     fastfetch
     fd
-		foliate
+    foliate
     fzf
     gcc
     gdb
@@ -39,17 +35,17 @@
     libnotify
     linuxKernel.packages.linux_6_6.v4l2loopback
     mangohud
-		newsflash
+    newsflash
     nixd
     nodejs_23
     node2nix
     nvitop
     patchelf
     qbittorrent
-		quickemu
+    quickemu
     ripgrep
     rssguard
-		swtpm
+    swtpm
     unzip
     vesktop
     w3m
@@ -58,10 +54,7 @@
     xorg.xev
     xsel
     zip
-  ]) ++ (with pkgs.gnomeExtensions; [
-		compact-top-bar
-		dash-to-dock
-	]);
+  ]) ++ (with pkgs.gnomeExtensions; [ compact-top-bar dash-to-dock ]);
 
   news.display = "silent";
 
@@ -72,11 +65,8 @@
     JAVA_HOME = "${pkgs.jdk}";
   };
 
-  home.sessionPath = [
-    ".npm-packages/bin/"
-    "$HOME/.emacs.d/bin"
-    "${pkgs.jdk}/bin"
-  ];
+  home.sessionPath =
+    [ ".npm-packages/bin/" "$HOME/.emacs.d/bin" "${pkgs.jdk}/bin" ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-{
-	home = {
-		username = "wsl";
-		homeDirectory = "/home/wsl";
-		stateVersion = "24.05"; # Please read the comment before changing.
-	};
+{ pkgs, ... }: {
+  home = {
+    username = "wsl";
+    homeDirectory = "/home/wsl";
+    stateVersion = "24.05"; # Please read the comment before changing.
+  };
 
   nixpkgs.config = {
     allowUnfree = true;

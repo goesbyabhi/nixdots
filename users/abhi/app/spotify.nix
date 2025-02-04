@@ -1,17 +1,11 @@
 { pkgs, inputs, ... }: {
-  imports = [
-    inputs.spicetify-nix.homeManagerModules.default
-  ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
   programs.spicetify =
-    let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in
-    {
+    let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in {
       enable = true;
       theme = spicePkgs.themes.sleek;
-      enabledCustomApps = with spicePkgs.apps; [
-        lyricsPlus
-      ];
+      enabledCustomApps = with spicePkgs.apps; [ lyricsPlus ];
       enabledExtensions = with spicePkgs.extensions; [
         adblock
         hidePodcasts

@@ -21,23 +21,24 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nur = {
-      url = "github:nix-community/NUR";
+    nur = { url = "github:nix-community/NUR"; };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-		nixvim = {
-			url = "github:nix-community/nixvim";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, aagl, ... }@inputs:
+  outputs =
+    { nixpkgs, nixpkgs-unstable, nixos-wsl, home-manager, aagl, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-stable = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
-			inherit (nixpkgs) lib;
-    in
-    {
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      inherit (nixpkgs) lib;
+    in {
       nixosConfigurations = {
         nimbus = lib.nixosSystem {
           inherit system;
@@ -46,26 +47,24 @@
             {
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Set up Cachix
-              programs.anime-game-launcher.enable = true; # Adds launcher and /etc/hosts rules
+              programs.anime-game-launcher.enable =
+                true; # Adds launcher and /etc/hosts rules
             }
           ];
         };
 
-				senzu = lib.nixosSystem {
-					inherit system;
-					modules = [
-						nixos-wsl.nixosModules.default
-						./hosts/senzu
-					];
-				};
+        senzu = lib.nixosSystem {
+          inherit system;
+          modules = [ nixos-wsl.nixosModules.default ./hosts/senzu ];
+        };
       };
 
       homeConfigurations."abhi" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit pkgs-stable; inherit system; };
-        modules = [
-          ./users/abhi
-					./common
-        ];
+        pkgs = import nixpkgs {
+          inherit pkgs-stable;
+          inherit system;
+        };
+        modules = [ ./users/abhi ./common ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
           inherit inputs;
@@ -73,17 +72,17 @@
         };
       };
 
-			homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
-				pkgs = import nixpkgs { inherit pkgs-unstable; inherit system; };
-				modules = [
-					./users/wsl
-					./common
-				];
-				extraSpecialArgs = {
-					inherit pkgs-unstable;
-					inherit inputs;
-					inherit system;
-				};
-			};
+      homeConfigurations."wsl" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          inherit pkgs-unstable;
+          inherit system;
+        };
+        modules = [ ./users/wsl ./common ];
+        extraSpecialArgs = {
+          inherit pkgs-unstable;
+          inherit inputs;
+          inherit system;
+        };
+      };
     };
 }

@@ -24,7 +24,7 @@
             local lint = require("lint")
             lint.try_lint()
           end
-          '';
+        '';
       };
     };
   };
