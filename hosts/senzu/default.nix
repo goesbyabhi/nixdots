@@ -11,6 +11,10 @@
   imports = [
     # include NixOS-WSL modules
     # <nixos-wsl/modules>
+		(fetchTarball {
+			url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+			sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+		})
   ];
 
   users.users.wsl = {
@@ -25,6 +29,8 @@
   wsl.defaultUser = "wsl";
 
   networking.hostName = "senzu";
+
+	services.vscode-server.enable = true;
 
   i18n = {
     defaultLocale = "en_IN";
