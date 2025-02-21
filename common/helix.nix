@@ -1,42 +1,61 @@
-{ pkgs-unstable, ... }: {
+{ pkgs-unstable, ... }:
+{
   programs.helix = {
     enable = true;
-    defaultEditor = false;
+    defaultEditor = true;
     package = pkgs-unstable.helix;
-    languages.language = [
-      {
-        name = "javascript";
-        formatter = {
-          command = "prettierd";
-          args = [ ".js" ];
-        };
-        auto-format = true;
-      }
-      {
-        name = "typescript";
-        formatter = {
-          command = "prettierd";
-          args = [ ".ts" ];
-        };
-        auto-format = true;
-      }
-      {
-        name = "jsx";
-        formatter = {
-          command = "prettierd";
-          args = [ ".jsx" ];
-        };
-        auto-format = true;
-      }
-      {
-        name = "tsx";
-        formatter = {
-          command = "prettierd";
-          args = [ ".tsx" ];
-        };
-        auto-format = true;
-      }
-    ];
+    languages = {
+      language = [
+        {
+          name = "javascript";
+          formatter = {
+            command = "prettierd";
+            args = [ ".js" ];
+          };
+          auto-format = true;
+        }
+        {
+          name = "typescript";
+          formatter = {
+            command = "prettierd";
+            args = [ ".ts" ];
+          };
+          auto-format = true;
+        }
+        {
+          name = "jsx";
+          formatter = {
+            command = "prettierd";
+            args = [ ".jsx" ];
+          };
+          auto-format = true;
+        }
+        {
+          name = "tsx";
+          formatter = {
+            command = "prettierd";
+            args = [ ".tsx" ];
+          };
+          auto-format = true;
+        }
+        {
+          name = "python";
+          auto-format = true;
+          language-servers = [ "ruff" ];
+          formatter = {
+            command = "black";
+            args = [
+              "--quiet"
+              "-"
+            ];
+          };
+        }
+      ];
+      language-server.ruff = {
+        command = "ruff";
+        args = [ "server" ];
+      };
+    };
     settings = {
       theme = "curzon";
       editor = {
@@ -51,10 +70,17 @@
             space = "file_picker";
             w = ":w";
             q = ":q";
-            esc = [ "collapse_selection" "keep_primary_selection" ];
+            esc = [
+              "collapse_selection"
+              "keep_primary_selection"
+            ];
           };
         };
-        insert = { j = { j = "normal_mode"; }; };
+        insert = {
+          j = {
+            j = "normal_mode";
+          };
+        };
       };
     };
   };

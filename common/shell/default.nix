@@ -9,7 +9,14 @@
         cat = "bat";
         rr = "ranger";
       };
-      historyIgnore = [ "ls" "l" "nvim" "cd" "exit" "ranger" ];
+      historyIgnore = [
+        "ls"
+        "l"
+        "nvim"
+        "cd"
+        "exit"
+        "ranger"
+      ];
       bashrcExtra = ''
         	function ranger {
         		local quit_cd_wd_file="$HOME/.cache/ranger/quit_cd_wd"        # The path must be the same as <file_saved_wd> in map.

@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     ./keymap.nix
@@ -21,7 +22,7 @@
   programs.nixvim = {
     enable = true;
 
-    defaultEditor = true;
+    defaultEditor = false;
 
     viAlias = true;
     vimAlias = true;
@@ -79,7 +80,10 @@
     autoCmd = [
       {
         desc = "True text centering";
-        event = [ "CursorMoved" "CursorMovedI" ];
+        event = [
+          "CursorMoved"
+          "CursorMovedI"
+        ];
         pattern = [ "*" ];
         callback = {
           __raw = ''
@@ -105,7 +109,11 @@
       }
     ];
 
-    autoGroups = { lint_auGroup = { clear = true; }; };
+    autoGroups = {
+      lint_auGroup = {
+        clear = true;
+      };
+    };
 
     extraConfigLua = ''
       vim.cmd('set path+=**')
