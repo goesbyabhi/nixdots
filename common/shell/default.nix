@@ -35,6 +35,17 @@
       '';
     };
 
+    nushell = {
+      enable = true;
+      shellAliases = {
+        ll = "ls -l";
+        ".." = "cd ..";
+        cls = "clear";
+        cat = "bat";
+        rr = "ranger";
+      };
+    };
+
     git = {
       enable = true;
       delta = {

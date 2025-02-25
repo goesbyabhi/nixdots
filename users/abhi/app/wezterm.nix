@@ -32,7 +32,9 @@
             				 }
 
             			 config.default_cursor_style = 'SteadyBlock'
-            				 return config
-            				 '';
+                   -- Setting nushell as default shell
+                   config.default_prog = { 'nu' }
+          				 return config
+      				  '';
   };
 }
