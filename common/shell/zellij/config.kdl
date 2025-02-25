@@ -135,7 +135,7 @@ keybinds clear-defaults=true {
 
 		bind "Alt z" { SwitchToMode "Locked"; }
 
-		bind "Alt f" { ToggleFloatingPanes; }
+		bind "Alt F" { ToggleFloatingPanes; }
 		bind "Alt t" { NewPane "Down"; }
 		bind "Alt v" { NewPane "Right"; }
 
@@ -149,6 +149,12 @@ keybinds clear-defaults=true {
 
 		bind "Ctrl H" { PageScrollDown; }
 		bind "Ctrl L" { PageScrollUp; }
+
+		bind "Alt f" {
+			LaunchPlugin "filepicker" {
+				close_on_selection true
+			};
+		}
 	}
 	shared_except "normal" "locked" {
 		bind "Enter" "Esc" { SwitchToMode "Normal"; }

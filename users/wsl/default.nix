@@ -21,7 +21,6 @@
     patchelf
     ripgrep
     unzip
-    w3m
     wl-clipboard
     xclip
     xorg.xev
