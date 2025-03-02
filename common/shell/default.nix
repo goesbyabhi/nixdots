@@ -44,6 +44,11 @@
         cat = "bat";
         rr = "ranger";
       };
+      configFile = {
+        text = ''
+          $env.config.show_banner = false
+        '';
+      };
     };
 
     git = {

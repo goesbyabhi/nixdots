@@ -63,6 +63,9 @@
         pkgs = import nixpkgs {
           inherit pkgs-stable;
           inherit system;
+          overlays = [
+            (import ./overlays/zed-editor.nix)
+          ];
         };
         modules = [ ./users/abhi ./common ];
         extraSpecialArgs = {

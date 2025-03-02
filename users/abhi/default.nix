@@ -66,6 +66,7 @@
       xclip
       xorg.xev
       xsel
+      # zed-editor-bin
       zip
     ])
     ++ (with pkgs.gnomeExtensions; [
