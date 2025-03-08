@@ -8,34 +8,57 @@
       language = [
         {
           name = "javascript";
-          formatter = {
-            command = "prettierd";
-            args = [ ".js" ];
-          };
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
           auto-format = true;
         }
         {
           name = "typescript";
-          formatter = {
-            command = "prettierd";
-            args = [ ".ts" ];
-          };
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
           auto-format = true;
         }
         {
           name = "jsx";
-          formatter = {
-            command = "prettierd";
-            args = [ ".jsx" ];
-          };
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
           auto-format = true;
         }
         {
           name = "tsx";
-          formatter = {
-            command = "prettierd";
-            args = [ ".tsx" ];
-          };
+          language-servers = [
+            {
+              name = "typescript-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
+          auto-format = true;
+        }
+        {
+          name = "json";
+          language-servers = [
+            {
+              name = "vscode-json-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
           auto-format = true;
         }
         {
@@ -51,9 +74,15 @@
           };
         }
       ];
-      language-server.ruff = {
-        command = "ruff";
-        args = [ "server" ];
+      language-server = {
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
+        biome = {
+          command = "biome";
+          args = [ "lsp-proxy" ];
+        };
       };
     };
     settings = {

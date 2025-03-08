@@ -1,4 +1,4 @@
-{
+{pkgs, ... }: {
   programs = {
     bash = {
       enable = true;
@@ -92,6 +92,10 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
+      extensions = with pkgs;[
+        gh-copilot
+        gh-screensaver
+      ];
     };
 
     zoxide = {
